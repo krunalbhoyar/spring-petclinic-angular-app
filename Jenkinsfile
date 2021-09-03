@@ -9,10 +9,10 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker version'
-                sh 'docker build -t spring-petclinic-angular:latest .'
-                sh 'docker images'
-                sh 'docker tag spring-petclinic-angular:latest krunalbhoyar/spring-petclinic-angular:latest'
+                sh 'sudo docker --version'
+                sh 'sudo docker build -t spring-petclinic-angular:latest .'
+                sh 'sudo docker images'
+                sh 'sudo docker tag spring-petclinic-angular:latest krunalbhoyar/spring-petclinic-angular:latest'
             }
         }
         stage('Push Image to Docker Hub') {
