@@ -18,9 +18,9 @@ pipeline {
         stage('Push Image to Docker Hub') {
             steps {
                 withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
-                sh 'docker login -u krunalbhoyar -p $PASSWORD'
+                sh 'sudo docker login -u krunalbhoyar -p $PASSWORD'
                 }
-                sh 'docker push krunalbhoyar/spring-petclinic-angular:latest'
+                sh 'sudo docker push krunalbhoyar/spring-petclinic-angular:latest'
                 
             }
         }
