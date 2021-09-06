@@ -10,9 +10,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'sudo docker --version'
-                sh 'sudo docker build -t spring-petclinic-angular:latest .'
+                sh 'sudo docker build -t krunalbhoyar/spring-petclinic-angular:$BUILD_NUMBER .'
                 sh 'sudo docker images'
-                sh 'sudo docker tag spring-petclinic-angular:latest krunalbhoyar/spring-petclinic-angular:latest'
             }
         }
         stage('Push Image to Docker Hub') {
@@ -20,7 +19,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'DOCKER_HUB_PASSWORD', variable: 'PASSWORD')]) {
                 sh 'sudo docker login -u krunalbhoyar -p $PASSWORD'
                 }
-                sh 'sudo docker push krunalbhoyar/spring-petclinic-angular:latest'
+                sh 'sudo docker push krunalbhoyar/spring-petclinic-angular:$BUILD_NUMBER'
                 
             }
         }
