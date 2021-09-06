@@ -23,6 +23,16 @@ pipeline {
                 
             }
         }
+        stage('Deploy to EKS Cluster') {
+            steps {
+                sh "chmod +x ChangeTag.sh"
+                sh "./ChangeTag.sh ${BUILD_NUMBER}"
+                kubernetesDeploy(
+                    configs: 'angular-deployment.yaml',
+                    kubeconfigId: 'K8S-Credentials',
+                    enableConfigSubstitution: true
+                    )               
+                }
+            }
+        }
     }
-}
-
