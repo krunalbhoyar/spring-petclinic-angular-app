@@ -16,7 +16,7 @@ spec:
       - name: angular-app
         image: krunalbhoyar/spring-petclinic-angular:tagVersion
         ports:
-        - containerPort: 8085
+        - containerPort: 8080
         
 # service type loadbalancer       
 ---
@@ -29,6 +29,6 @@ spec:
     app: angular-app
   ports:
     - protocol: TCP
-      port: 8085
-      targetPort: 8085
+      port: 8080
+      targetPort: 8080
   type: LoadBalancer
